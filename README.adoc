@@ -1,0 +1,103 @@
+= Exercices sur les princicpes SOLID
+
+== _Single Responsability Principle_ (SRP)
+Soit la classe `Employe`
+
+[source,java]
+----
+class Employe {
+    private final String nom;
+    private final String adresse;
+    
+    // ...
+    
+    public double calculSalaire() { return /* calcul du salaire */; }
+    public void afficheCoordonnees() { System.out.println(nom + ", " + adresse); }
+}
+----
+
+. Cette classe respecte-t-elle SRP ? Pourquoi ?
+. Que se passe-t-il si la méthode de calcul du salaire change ?
+. Que se passe-t-il si l’affichage est remplacé par le stockage dans un fichier CSV ?
+. Proposez une solution respectant SRP.
+
+== _Open Close Principle_ (OCP)
+Le salaire d’un employé est de 1500€ auquel s’ajoute 20€ par année d’ancienneté.
+Le salaire d’un vendeur se calcule sur la même base mais en ajoutant une commission propre à chaque vendeur.
+On veut pouvoir calculer la somme totale des salaires de l’entreprise.
+
+. Proposez une solution respectant OCP.
+. Pour le vérifier, ajoutez la classe manager (même base de calcul que l’employé plus 100€ par personne sous ses ordres.
+
+== _Liskov Substitution Principe_ (LSP)
+Soient les classes `Robot` et `RobotStatique`
+
+[source,java]
+----
+class Robot {
+    private Position position;
+    private Direction direction;
+    
+    public void tourne() { /* tourne d'1/4 de tour */ }
+    public void avance() { /* avance d'une case */ }
+}
+
+class RobotStatique {
+    @Override
+    public void avance() { thrown new UnsupportedOperationException(); }
+}
+----
+
+. Cette solution respecte-t-elle LSP ? Pourquoi ?
+. Implémentez la méthode `avancerTous` qui fait avancer tous les robots.
+. Proposez une solution respectant LSP.
+
+== _Interface Segregation Principe_ (ISP)
+Soit le code Java suivant:
+
+[source,java]
+----
+interface Printer {
+    void print();
+    void scan();
+    void copy();
+    void fax();
+}
+
+class SimplePrinter implements Printer {
+    @Override
+    public print() { /* print a document */ }
+
+    @Override
+    void scan() { thrown new UnsupportedOperationException(); }
+
+    @Override
+    void copy() { thrown new UnsupportedOperationException(); }
+
+    @Override
+    void fax() { thrown new UnsupportedOperationException(); }
+}
+----
+
+. Quels problèmes peuvent se poser avec cette solution ?
+. Supposons qu’une application utilisant le fax nécessite de changer l’interface de la méthode `fax` en `void fax(List<Document> l);`, quel impact cela aura-t-il sur `SimplePrinter` ?
+. Proposez une solution respectant ISP.
+
+== _Dependency Inversion Principle_ (DIP)
+Soit le code Java suivant:
+
+[source,java]
+----
+class UneClasseMetier {
+    public void uneMethodeMetier() {
+        System.out.println(LocalDateTime.now() + ": Début de uneMethodeMetier"); // log message
+        
+        // Traitements métiers
+        
+        System.out.println(LocalDateTime.now() + ": Fin de uneMethodeMetier"); // log message
+    }
+}
+----
+
+. Ce code respecte-t-il DIP ? Pourquoi ?
+. Proposez une solution respectant DIP.
