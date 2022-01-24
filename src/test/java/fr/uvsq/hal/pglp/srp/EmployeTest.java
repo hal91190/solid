@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class EmployeTest {
   @Test
   void employeDoitAvoirUnNom() {
-    Employe frodon = new Employe("Frodon");
+    Employe frodon = new Employe("Frodon", "La Comté");
     assertEquals("Frodon", frodon.getNom());
   }
 }

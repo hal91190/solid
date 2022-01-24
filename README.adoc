@@ -1,4 +1,4 @@
-= Exercices sur les princicpes SOLID
+= Exercices sur les principes SOLID
 
 == _Single Responsability Principle_ (SRP)
 Soit la classe `Employe`
