@@ -44,7 +44,7 @@ class Robot {
 
 class RobotStatique {
     @Override
-    public void avance() { thrown new UnsupportedOperationException(); }
+    public void avance() { throw new UnsupportedOperationException(); }
 }
 ----
 
@@ -69,13 +69,13 @@ class SimplePrinter implements Printer {
     public print() { /* print a document */ }
 
     @Override
-    void scan() { thrown new UnsupportedOperationException(); }
+    void scan() { throw new UnsupportedOperationException(); }
 
     @Override
-    void copy() { thrown new UnsupportedOperationException(); }
+    void copy() { throw new UnsupportedOperationException(); }
 
     @Override
-    void fax() { thrown new UnsupportedOperationException(); }
+    void fax() { throw new UnsupportedOperationException(); }
 }
 ----
 
