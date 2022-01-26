@@ -1,0 +1,54 @@
+= Liskov Substitution Principe (LSP)
+:icons: font
+:sourcedir: src/main/java/fr/uvsq/hal/pglp
+:testdir: src/test/java/fr/uvsq/hal/pglp
+
+. Cette solution respecte-t-elle LSP ? Pourquoi ?
++
+Cette structure de classes ne respecte pas le principe LSP.
+En effet, LSP suppose qu'une sous-classe respecte le contrat établi par la super-classe.
+Dans notre exemple, aucune méthode de la super-classe `Robot` ne lance d'exception.
+Ce n'est pas le cas de la méthode `RobotStatique.avance` qui, pour représenter un élément immobile, lance une exception lors de l'appel de `avance`.
+
+. Implémentez la méthode avancerTous qui fait avancer tous les robots.
++
+.Appeler `Robot.avancer` ne provoque pas d'exception
+[source,java]
+----
+include::{testdir}/lsp/RobotTest.java[tag=avance,indent=0]
+----
++
+.Appeler `RobotStatique.avancer` par contre lève une exception
+[source,java]
+----
+@Test
+public void robotStatiqueNeDoitPasProvoquerDException() {
+    RobotStatique robot = new RobotStatique();
+    Robot.faitFaireUnTrucA(robot);
+}
+----
+
+. Proposez une solution respectant LSP.
++
+Le principal problème ici est que la classe `RobotStatique` ne devrait pas avoir de méthode `avance`.
+Donc, l'héritage entre `Robot` et `RobotStatique` est une erreur de conception mis en évidence par la violation du principe LSP.
++
+Une solution possible consiste à créer une super-classe commune à `Robot` et `RobotStatique` sans toutefois que ces deux classes ne soient reliées.
++
+.La classe `Element`
+[source,java]
+----
+include::{sourcedir}/lsp/Element.java[]
+----
++
+.La classe `Robot`
+[source,java]
+----
+include::{sourcedir}/lsp/Robot.java[]
+----
++
+.La classe `RobotStaique`
+[source,java]
+----
+include::{sourcedir}/lsp/RobotStatique.java[]
+----
