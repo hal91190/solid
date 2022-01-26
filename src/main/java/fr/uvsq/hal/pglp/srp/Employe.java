@@ -1,11 +1,6 @@
 package fr.uvsq.hal.pglp.srp;
 
-import org.fusesource.jansi.AnsiConsole;
-
-import static org.fusesource.jansi.Ansi.Color.GREEN;
-import static org.fusesource.jansi.Ansi.Color.RED;
-import static org.fusesource.jansi.Ansi.ansi;
-
+// tag::employe[]
 /**
  * La classe <code>Employe</code> représente un employé.
  *
@@ -47,17 +42,12 @@ public class Employe {
     return nom;
   }
 
+  public String getAdresse() {
+    return adresse;
+  }
+
   public double calculSalaire() {
     return BASE + anciennete * AUGMENTATION;
   }
-
-  public void afficheCoordonnees() {
-    AnsiConsole.systemInstall();
-    AnsiConsole.out().println(ansi().eraseScreen().fg(RED).a(nom + ", ").fg(GREEN).a(adresse).reset());
-  }
-
-  public static void main(String[] args) {
-    Employe frodon = new Employe("Frodon", "La Comté");
-    frodon.afficheCoordonnees();
-  }
 }
+// end::employe[]

@@ -1,0 +1,34 @@
+= Single Responsability Principle (SRP)
+:sourcedir: src/main/java/fr/uvsq/hal/pglp
+
+. Cette classe respecte-t-elle SRP ? Pourquoi ?
++
+La classe `Employe` ne respecte pas le principe SRP.
+En effet, elle implémente deux responsabilités (calculer le salaire et afficher les coordonnées) et donc deux raisons de changer ce qui est contraire à SRP.
+
+. Que se passe-t-il si la méthode de calcul du salaire change ?
++
+Un changement dans la méthode de calcul du salaire aura un impact sur l'ensemble des clients de la classe, y compris ceux qui n'utilisent que le service d'affichage des coordonnées.
+Cela crée donc une dépendance non souhaitable.
+
+. Que se passe-t-il si l’affichage est remplacé par le stockage dans un fichier CSV ?
++
+Comme ci-dessus, une modification de ce type aura un impact sur l'ensemble des clients de la classe et donc aussi sur ceux qui n'utilisent que le calcul du salaire.
+D'autre part, la classe `Employe` est une classe métier et, en tant que telle, ne devrait pas dépendre de routines d'I/O (`System.out.println`, sortie CSV).
+
+. Proposez une solution respectant SRP.
++
+La solution va donc consister à séparer les deux responsabilités de la classe `Employe`.
+Une possibilité confortée par l'idée de supprimer la dépendance entre la classe métier et des routines de bas-niveau comme les I/O est d'extraire le code d'I/O dans une classe indépendante chargée des affichages.
++
+.La classe `Employe`
+[source,java]
+----
+include::{sourcedir}/srp/Employe.java[tag=employe,indent=0]
+----
++
+.La classe `EmployeUtil`
+[source,java]
+----
+include::{sourcedir}/srp/EmployeUtil.java[tag=employeutil,indent=0]
+----
