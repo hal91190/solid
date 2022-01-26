@@ -1,0 +1,31 @@
+= Open Close Principle (OCP)
+:icons: font
+:sourcedir: src/main/java/fr/uvsq/hal/pglp
+
+. Proposez une solution respectant OCP.
++
+Pour que l'implémentation respecte le principe OCP, il faut avoir la possibilité de rajouter une nouvelle façon de calculer un salaire par extension des classes existantes mais sans devoir modifier le code existant.
++
+Pour cela, dans une approche OO, on s'appuie généralement sur le polymorphisme afin d'exprimer les différences de traitements tout en gardant le lien entre les classes.
++
+.La classe `Employe`
+[source,java]
+----
+include::{sourcedir}/ocp/Employe.java[tag=employe,indent=0]
+----
++
+.La classe `Vendeur`
+[source,java]
+----
+include::{sourcedir}/ocp/Vendeur.java[tag=vendeur,indent=0]
+----
+
+. Pour le vérifier, ajoutez la classe manager (même base de calcul que l’employé plus 100€ par personne sous ses ordres.
++
+.La classe `Manager`
+[source,java]
+----
+include::{sourcedir}/ocp/Manager.java[tag=manager,indent=0]
+----
+
+CAUTION: Cette implémentation ne tient compte que des subordonnés directs d'un manager. Pour avoir la taille totale de l'équipe, on pourrait par exemple appliquer le pattern https://en.wikipedia.org/wiki/Composite_pattern[Composite] pour représenter une équipe. Cependant, cela nécessiterait une modification de la super-classe car il faudrait pouvoir pour chaque élément déterminer son nombre de subordonnés.

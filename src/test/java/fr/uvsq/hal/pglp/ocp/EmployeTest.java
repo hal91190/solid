@@ -7,12 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * La classe <code>EmployeTest</code> ...
- *
- * @author hal
- * @version 2022
- */
 class EmployeTest {
   Employe frodon;
 
