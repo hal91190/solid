@@ -17,4 +17,15 @@ public class Robot {
   public void avance() {
     // avance d'une case
   }
+
+  /**
+   * Un exemple de programme qui fait faire des actions à un robot.
+   *
+   * @param robot le robot qui va faire les actions
+   */
+  public static void faitFaireUnTrucA(Robot robot) {
+    robot.tourne();
+    robot.tourne();
+    robot.avance();
+  }
 }
