@@ -1,6 +1,7 @@
 package fr.uvsq.hal.pglp.dip;
 
-import java.time.LocalDateTime;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * La classe <code>UneClasseMetier</code> une classe métier.
@@ -9,14 +10,16 @@ import java.time.LocalDateTime;
  * @version 2022
  */
 public class UneClasseMetier {
+  static final Logger logger = LogManager.getLogger();
+
   /**
    * Une méthode métier.
    */
   public void uneMethodeMetier() {
-    System.out.println(LocalDateTime.now() + ": Début de uneMethodeMetier"); // log message
+    logger.debug("Début de uneMethodeMetier");
 
     // Traitements métiers
 
-    System.out.println(LocalDateTime.now() + ": Fin de uneMethodeMetier"); // log message
+    logger.debug("Fin de uneMethodeMetier");
   }
 }
