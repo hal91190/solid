@@ -1,0 +1,27 @@
+= Interface Segregation Principe (ISP)
+:icons: font
+:sourcedir: src/main/java/fr/uvsq/hal/pglp
+:testdir: src/test/java/fr/uvsq/hal/pglp
+
+. Quels problèmes peuvent se poser avec cette solution ?
++
+Le _principe de ségrégation des interfaces_ (_ISP_) exprime le fait qu'une forte _cohésion_ doit être respectée pour les interfaces.
+En effet, si une interface ne correspond pas précisément à un besoin, elle génèrera des dépendances inutiles pour ses clients.
++
+Dans cette exercice, l'interface `Printer` est beaucoup trop riche par rapport aux besoins.
+Seules les imprimantes multi-functions sont à même de fournir une implémentation pour chacune des méthodes de `Printer`.
+Comme dans le cas de la classe `SimplePrinter`, les classes implémentant cette interface devront trouver un moyen de proposer toutes ces méthodes même si elles ne fournissent pas le service.
++
+CAUTION: il est à noter que le fait de lancer des exceptions dans `SimplePrinter` est aussi une violation du principe _LSP_.
+En effet, la signature des méthodes de l'interface `Printer` ne prévoit pas ce cas.
+
+. Supposons qu’une application utilisant le fax nécessite de changer l’interface de la méthode `fax` en `void fax(List<Document> l);`, quel impact cela aura-t-il sur `SimplePrinter` ?
++
+La classe `SimplePrinter` devra être adaptée pour réagir à cette modification.
+Cette dépendance est évidemment non souhaitable puisque `SimplePrinter` est une simple imprimante qui ne dispose pas des capacités d'un fax.
+
+. Proposez une solution respectant ISP.
++
+Une solution va tout simplement consister à découper l'interface `Printer` en plusieurs interfaces plus cohésives.
+Selon les besoins, Cela conduira probablement à créer quatre interfaces (`Printer`, `Scanner`, `Copier`, `Fax`) ne comportant chacune qu'une unique méthode.
+Les classes devront alors implémenter la ou les interfaces adaptées à leurs besoins (`Printer` dans le cas de la classe `SimplePrinter`).
