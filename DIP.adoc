@@ -1,0 +1,55 @@
+= Dependency Inversion Principle (DIP)
+:icons: font
+:sourcedir: src/main/java/fr/uvsq/hal/pglp
+:testdir: src/test/java/fr/uvsq/hal/pglp
+
+. Ce code respecte-t-il DIP ? Pourquoi ?
++
+Le _principe d'inversion des dépendances_ (_DIP_) énonce que les modules de haut-niveau ne doivent pas dépendre de modules de bas-niveau.
+En effet, ces derniers étant plus à même d'être modifiés, violer ce principe conduit à devoir adapter l'application plus souvent que nécessaire.
++
+Dans notre exemple, DIP est violé car la classe `UneClasseMetier` qui est une classe du domaine de l'application dépend d'une bibliothèque technique de bas-niveau (_logging_).
++
+.la classe `UneClasseMetier` dépend de la bibliothèque de logging Log4J
+[source,java]
+----
+package fr.uvsq.hal.pglp.dip;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+/**
+ * La classe <code>UneClasseMetier</code> une classe métier.
+ *
+ * @author hal
+ * @version 2022
+ */
+public class UneClasseMetier {
+  static final Logger logger = LogManager.getLogger();
+
+  /**
+   * Une méthode métier.
+   */
+  public void uneMethodeMetier() {
+    logger.debug("Début de uneMethodeMetier");
+    // Traitements métiers
+    logger.debug("Fin de uneMethodeMetier");
+  }
+}
+----
+
+. Proposez une solution respectant DIP.
++
+Pour supprimer un couplage, la solution consiste souvent à insérer une abstraction entre les deux éléments couplés.
+La classe dépendra donc de l'abstraction et non plus directement de la bibliothèque de bas niveau.
+La bibliothèque de bas niveau devra quant à elle également implémenter l'interface ce qui inversera la dépendance et rendra la conception conforme à DIP.
++
+Concrètement, dans cet exercice, cela consiste à créer une interface dont dépendra `UneClasseMetier`.
+Comme utiliser une bibliothèque de logging est un besoin récurrent dans bon nombre d'applications, cette tache a déjà été réalisée et mise à disposition sous la forme d'une API (https://www.slf4j.org/[_Simple Logging Facade for Java_ ou _SLF4J_]).
+
++
+.la classe `UneClasseMetier` dépend de l'API SLF4J
+[source,java]
+----
+include::{sourcedir}/dip/UneClasseMetier.java[]
+----

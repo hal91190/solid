@@ -1,7 +1,7 @@
 package fr.uvsq.hal.pglp.dip;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * La classe <code>UneClasseMetier</code> une classe métier.
@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
  * @version 2022
  */
 public class UneClasseMetier {
-  static final Logger logger = LogManager.getLogger();
+  static final Logger logger = LoggerFactory.getLogger(UneClasseMetier.class);
 
   /**
    * Une méthode métier.
