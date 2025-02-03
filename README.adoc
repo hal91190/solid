@@ -42,7 +42,7 @@ class Robot {
     public void avance() { /* avance d'une case */ }
 }
 
-class RobotStatique {
+class RobotStatique extends Robot {
     @Override
     public void avance() { throw new UnsupportedOperationException(); }
 }
