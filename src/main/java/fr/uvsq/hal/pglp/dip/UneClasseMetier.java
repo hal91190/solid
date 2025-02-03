@@ -10,16 +10,16 @@ import org.slf4j.LoggerFactory;
  * @version 2022
  */
 public class UneClasseMetier {
-  static final Logger logger = LoggerFactory.getLogger(UneClasseMetier.class);
+  static final Logger LOGGER = LoggerFactory.getLogger(UneClasseMetier.class);
 
   /**
    * Une méthode métier.
    */
   public void uneMethodeMetier() {
-    logger.debug("Début de uneMethodeMetier");
+    LOGGER.debug("Début de uneMethodeMetier");
 
     // Traitements métiers
 
-    logger.debug("Fin de uneMethodeMetier");
+    LOGGER.debug("Fin de uneMethodeMetier");
   }
 }
